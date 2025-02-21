@@ -51,6 +51,18 @@
             color: #ff3399;
             font-size: 20px;
         }
+        .nav-links {
+            margin: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            background: #ff66b2;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+            display: inline-block;
+        }
     </style>
     <script>
         function redeemCoupon(button) {
@@ -74,49 +86,15 @@
 <body onload="checkRedeemedCoupons()">
     <div class="container">
         <h1>💖 Love Coupon Book 💖</h1>
-        <p>Happy 24th Birthday! Redeem these special coupons anytime you want. 💕</p>
+        <p>Happy 24th Birthday! Choose a category below to view your special coupons. 💕</p>
         
-        <script>
-            const coupons = [
-                "Surprise Hot Wheels Car",
-                "Hot Wheels Shopping Spree",
-                "DIY Hot Wheels Track Day",
-                "Hot Wheels Display Makeover",
-                "Car Wash Date",
-                "24 Hugs for Your 24th Birthday",
-                "A Day of Love Notes",
-                "Personal Love Letter",
-                "Stargazing Date",
-                "Personalized Playlist",
-                "Breakfast in Bed",
-                "Home-Cooked Meal",
-                "Unlimited Snacks for a Day",
-                "Dinner Date on Me",
-                "Sweet Treat Surprise",
-                "Gamer’s Night",
-                "Movie Marathon",
-                "Binge-Watch Your Favorite Series",
-                "Outdoor Adventure",
-                "No Phone Date",
-                "Massage Session",
-                "Kissing Marathon",
-                "Cuddle Session",
-                "One Wish, No Questions Asked"
-            ];
-
-            const container = document.querySelector(".container");
-            coupons.forEach(coupon => {
-                const couponDiv = document.createElement("div");
-                couponDiv.className = "coupon";
-                couponDiv.innerHTML = `
-                    <h3>${coupon}</h3>
-                    <p>You can redeem this special treat! <span class="heart">❤</span></p>
-                    <input type="file" class="photo-upload" accept="image/*">
-                    <button class="redeem" onclick="redeemCoupon(this)">Redeem</button>
-                `;
-                container.appendChild(couponDiv);
-            });
-        </script>
+        <div class="nav-links">
+            <a href="hotwheels.html">🚗 Hot Wheels & Car</a>
+            <a href="romantic.html">💖 Romantic & Sweet</a>
+            <a href="food.html">🍰 Food & Treats</a>
+            <a href="fun.html">🎮 Fun & Entertainment</a>
+            <a href="spicy.html">🔥 Spicy & Intimate</a>
+        </div>
     </div>
 </body>
 </html>
