@@ -81,59 +81,77 @@
                 }
             });
         }
+        
+        function displayCoupons() {
+            const couponContainer = document.getElementById("coupon-list");
+            const categories = {
+                "🚗 Hot Wheels & Car": [
+                    "Surprise Hot Wheels Car",
+                    "Hot Wheels Shopping Spree",
+                    "DIY Hot Wheels Track Day",
+                    "Hot Wheels Display Makeover",
+                    "Car Wash Date"
+                ],
+                "💖 Romantic & Sweet": [
+                    "24 Hugs for Your 24th Birthday",
+                    "A Day of Love Notes",
+                    "Personal Love Letter",
+                    "Stargazing Date",
+                    "Personalized Playlist"
+                ],
+                "🍰 Food & Treats": [
+                    "Breakfast in Bed",
+                    "Home-Cooked Meal",
+                    "Unlimited Snacks for a Day",
+                    "Dinner Date on Me",
+                    "Sweet Treat Surprise"
+                ],
+                "🎮 Fun & Entertainment": [
+                    "Gamer’s Night",
+                    "Movie Marathon",
+                    "Binge-Watch Your Favorite Series",
+                    "Outdoor Adventure",
+                    "No Phone Date"
+                ],
+                "🔥 Spicy & Intimate": [
+                    "Massage Session",
+                    "Kissing Marathon",
+                    "Cuddle Session",
+                    "One Wish, No Questions Asked"
+                ]
+            };
+            
+            for (const [category, coupons] of Object.entries(categories)) {
+                const categoryTitle = document.createElement("h2");
+                categoryTitle.innerText = category;
+                couponContainer.appendChild(categoryTitle);
+                
+                coupons.forEach(couponText => {
+                    const couponDiv = document.createElement("div");
+                    couponDiv.classList.add("coupon");
+                    couponDiv.innerHTML = `<p>${couponText}</p>
+                        <input type="file" class="photo-upload" accept="image/*">
+                        <button class="redeem" onclick="redeemCoupon(this)">Redeem</button>`;
+                    couponContainer.appendChild(couponDiv);
+                });
+            }
+        }
     </script>
 </head>
-<body onload="checkRedeemedCoupons()">
+<body onload="checkRedeemedCoupons(); displayCoupons();">
     <div class="container">
         <h1>💖 Love Coupon Book 💖</h1>
         <p>Happy 24th Birthday! Choose a category below to view your special coupons. 💕</p>
         
         <div class="nav-links">
-            <a href="hotwheels.html">🚗 Hot Wheels & Car</a>
-            <a href="romantic.html">💖 Romantic & Sweet</a>
-            <a href="food.html">🍰 Food & Treats</a>
-            <a href="fun.html">🎮 Fun & Entertainment</a>
-            <a href="spicy.html">🔥 Spicy & Intimate</a>
+            <a href="#hotwheels">🚗 Hot Wheels & Car</a>
+            <a href="#romantic">💖 Romantic & Sweet</a>
+            <a href="#food">🍰 Food & Treats</a>
+            <a href="#fun">🎮 Fun & Entertainment</a>
+            <a href="#spicy">🔥 Spicy & Intimate</a>
         </div>
+        
+        <div id="coupon-list"></div>
     </div>
-
-    <script>
-        const coupons = {
-            hotwheels: [
-                "Surprise Hot Wheels Car",
-                "Hot Wheels Shopping Spree",
-                "DIY Hot Wheels Track Day",
-                "Hot Wheels Display Makeover",
-                "Car Wash Date"
-            ],
-            romantic: [
-                "24 Hugs for Your 24th Birthday",
-                "A Day of Love Notes",
-                "Personal Love Letter",
-                "Stargazing Date",
-                "Personalized Playlist"
-            ],
-            food: [
-                "Breakfast in Bed",
-                "Home-Cooked Meal",
-                "Unlimited Snacks for a Day",
-                "Dinner Date on Me",
-                "Sweet Treat Surprise"
-            ],
-            fun: [
-                "Gamer’s Night",
-                "Movie Marathon",
-                "Binge-Watch Your Favorite Series",
-                "Outdoor Adventure",
-                "No Phone Date"
-            ],
-            spicy: [
-                "Massage Session",
-                "Kissing Marathon",
-                "Cuddle Session",
-                "One Wish, No Questions Asked"
-            ]
-        };
-    </script>
 </body>
 </html>
