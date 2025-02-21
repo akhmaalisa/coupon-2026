@@ -30,6 +30,9 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             position: relative;
         }
+        .hidden {
+            display: none;
+        }
         .redeem {
             background: #ff3399;
             color: white;
@@ -47,10 +50,6 @@
             display: block;
             margin: 10px auto;
         }
-        .heart {
-            color: #ff3399;
-            font-size: 20px;
-        }
         .nav-links {
             margin: 20px;
         }
@@ -62,6 +61,7 @@
             margin: 5px;
             border-radius: 10px;
             display: inline-block;
+            cursor: pointer;
         }
     </style>
     <script>
@@ -69,6 +69,13 @@
             button.innerText = "Redeemed";
             button.classList.add("redeemed");
             localStorage.setItem(button.parentElement.innerText, "redeemed");
+        }
+        
+        function showCategory(category) {
+            document.querySelectorAll(".coupon-container").forEach(container => {
+                container.classList.add("hidden");
+            });
+            document.getElementById(category).classList.remove("hidden");
         }
         
         function checkRedeemedCoupons() {
@@ -81,77 +88,56 @@
                 }
             });
         }
-        
-        function displayCoupons() {
-            const couponContainer = document.getElementById("coupon-list");
-            const categories = {
-                "🚗 Hot Wheels & Car": [
-                    "Surprise Hot Wheels Car",
-                    "Hot Wheels Shopping Spree",
-                    "DIY Hot Wheels Track Day",
-                    "Hot Wheels Display Makeover",
-                    "Car Wash Date"
-                ],
-                "💖 Romantic & Sweet": [
-                    "24 Hugs for Your 24th Birthday",
-                    "A Day of Love Notes",
-                    "Personal Love Letter",
-                    "Stargazing Date",
-                    "Personalized Playlist"
-                ],
-                "🍰 Food & Treats": [
-                    "Breakfast in Bed",
-                    "Home-Cooked Meal",
-                    "Unlimited Snacks for a Day",
-                    "Dinner Date on Me",
-                    "Sweet Treat Surprise"
-                ],
-                "🎮 Fun & Entertainment": [
-                    "Gamer’s Night",
-                    "Movie Marathon",
-                    "Binge-Watch Your Favorite Series",
-                    "Outdoor Adventure",
-                    "No Phone Date"
-                ],
-                "🔥 Spicy & Intimate": [
-                    "Massage Session",
-                    "Kissing Marathon",
-                    "Cuddle Session",
-                    "One Wish, No Questions Asked"
-                ]
-            };
-            
-            for (const [category, coupons] of Object.entries(categories)) {
-                const categoryTitle = document.createElement("h2");
-                categoryTitle.innerText = category;
-                couponContainer.appendChild(categoryTitle);
-                
-                coupons.forEach(couponText => {
-                    const couponDiv = document.createElement("div");
-                    couponDiv.classList.add("coupon");
-                    couponDiv.innerHTML = `<p>${couponText}</p>
-                        <input type="file" class="photo-upload" accept="image/*">
-                        <button class="redeem" onclick="redeemCoupon(this)">Redeem</button>`;
-                    couponContainer.appendChild(couponDiv);
-                });
-            }
-        }
     </script>
 </head>
-<body onload="checkRedeemedCoupons(); displayCoupons();">
+<body onload="checkRedeemedCoupons();">
     <div class="container">
         <h1>💖 Love Coupon Book 💖</h1>
         <p>Happy 24th Birthday! Choose a category below to view your special coupons. 💕</p>
         
         <div class="nav-links">
-            <a href="#hotwheels">🚗 Hot Wheels & Car</a>
-            <a href="#romantic">💖 Romantic & Sweet</a>
-            <a href="#food">🍰 Food & Treats</a>
-            <a href="#fun">🎮 Fun & Entertainment</a>
-            <a href="#spicy">🔥 Spicy & Intimate</a>
+            <a onclick="showCategory('hotwheels')">🚗 Hot Wheels & Car</a>
+            <a onclick="showCategory('romantic')">💖 Romantic & Sweet</a>
+            <a onclick="showCategory('food')">🍰 Food & Treats</a>
+            <a onclick="showCategory('fun')">🎮 Fun & Entertainment</a>
+            <a onclick="showCategory('spicy')">🔥 Spicy & Intimate</a>
         </div>
         
-        <div id="coupon-list"></div>
+        <div id="hotwheels" class="coupon-container hidden">
+            <h2>🚗 Hot Wheels & Car</h2>
+            <div class="coupon">Surprise Hot Wheels Car <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Hot Wheels Shopping Spree <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">DIY Hot Wheels Track Day <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Hot Wheels Display Makeover <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Car Wash Date <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+        </div>
+        
+        <div id="romantic" class="coupon-container hidden">
+            <h2>💖 Romantic & Sweet</h2>
+            <div class="coupon">24 Hugs for Your 24th Birthday <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">A Day of Love Notes <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Personal Love Letter <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Stargazing Date <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Personalized Playlist <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+        </div>
+        
+        <div id="food" class="coupon-container hidden">
+            <h2>🍰 Food & Treats</h2>
+            <div class="coupon">Breakfast in Bed <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Home-Cooked Meal <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Unlimited Snacks for a Day <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Dinner Date on Me <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Sweet Treat Surprise <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+        </div>
+        
+        <div id="fun" class="coupon-container hidden">
+            <h2>🎮 Fun & Entertainment</h2>
+            <div class="coupon">Gamer’s Night <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Movie Marathon <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Binge-Watch Your Favorite Series <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">Outdoor Adventure <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+            <div class="coupon">No Phone Date <button class="redeem" onclick="redeemCoupon(this)">Redeem</button></div>
+        </div>
     </div>
 </body>
 </html>
